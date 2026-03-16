@@ -1,0 +1,23 @@
+# Large data files — stored on HuggingFace Hub, not GitHub
+*.parquet
+*.faiss
+*.npy
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+env/
+.venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models cached locally by HuggingFace
+.cache/
