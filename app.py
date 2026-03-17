@@ -33,13 +33,37 @@ st.markdown("""
 
 # --- 2. File paths ---
 DB_FILE = 'massive_clean_books.parquet'
-FAISS_FILE = 'books_optimized.faiss'
+FAISS_FILE = 'books_semantic_index.faiss'
 MAP_FILE = 'vector_id_mapping.parquet'
 
-for f in [DB_FILE, FAISS_FILE, MAP_FILE]:
-    if not os.path.exists(f):
-        st.error(f"🚨 Required file '{f}' not found. Make sure all pipeline files are present.")
+# --- Auto-download large files from HuggingFace Hub if not present -----------
+# This runs on HuggingFace Spaces where the data files aren't in the repo.
+# Locally, if files already exist they are skipped instantly.
+
+HF_DATASET_REPO = "atp1111/nextread-data"
+
+def download_data_files():
+    try:
+        from huggingface_hub import hf_hub_download
+        files = {
+            DB_FILE:    "massive_clean_books.parquet",
+            FAISS_FILE: "books_optimized.faiss",
+            MAP_FILE:   "vector_id_mapping.parquet",
+        }
+        for local_path, hf_filename in files.items():
+            if not os.path.exists(local_path):
+                with st.spinner(f"Downloading {hf_filename} from HuggingFace Hub..."):
+                    hf_hub_download(
+                        repo_id=HF_DATASET_REPO,
+                        filename=hf_filename,
+                        repo_type="dataset",
+                        local_dir="."
+                    )
+    except Exception as e:
+        st.error(f"🚨 Failed to download data files: {e}")
         st.stop()
+
+download_data_files()
 
 # --- 3. Load AI Engine (GPU-aware, cached for session) -----------------------
 
@@ -163,7 +187,7 @@ QUERY_EXPANSIONS = {
 
 def expand_short_query(query: str) -> str:
     """Expand short queries with genre-related context terms."""
-    if len(query.split()) >= 3:
+    if len(query.split()) >= 6:
         return query  # Long enough, no expansion needed
     query_lower = query.lower()
     expansions = [exp for kw, exp in QUERY_EXPANSIONS.items() if kw in query_lower]
@@ -208,7 +232,7 @@ query = st.text_input(
     label_visibility="collapsed"
 )
 
-if query and len(query.strip()) >= 3:
+if query and len(query.strip()) > 3:
     with st.spinner("Searching millions of semantic dimensions..."):
 
         # ── Phase 1: Short Query Expansion ────────────────────────────────────
