@@ -71,7 +71,7 @@ st.markdown("""
     }
     .masthead-subtitle {
         font-family: 'Lato', sans-serif;
-        font-size: 0.9rem;
+        font-size: 1.2rem;
         font-weight: 300;
         color: #777777;
         letter-spacing: 0.02em;
@@ -80,10 +80,9 @@ st.markdown("""
     /* ── Search label ── */
     .search-label {
         font-family: 'Lato', sans-serif;
-        font-size: 0.8rem;
+        font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: 0.2em;
-        text-transform: uppercase;
         color: #999999;
         margin-bottom: 0.5rem;
     }
@@ -102,8 +101,8 @@ st.markdown("""
         transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
     }
     .stTextInput > div > div > input:focus {
-        border-color: #5A7D6A !important;
-        box-shadow: 0 0 0 3px rgba(90, 125, 106, 0.12) !important;
+        border-color: #1A1A1A !important;
+        box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08) !important;
         outline: none !important;
     }
     .stTextInput > div > div > input::placeholder {
@@ -114,48 +113,92 @@ st.markdown("""
     /* ── Filter label ── */
     .filter-label {
         font-family: 'Lato', sans-serif;
-        font-size: 0.78rem;
+        font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: 0.18em;
-        text-transform: uppercase;
         color: #AAAAAA;
         margin-bottom: 0.35rem;
     }
 
-    /* ── Filter selects ── */
-    div[data-testid="stSelectbox"] > div > div {
+    /* ── Radio pills for Era and Rating ── */
+    div[data-testid="stRadio"] > div {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+    div[data-testid="stRadio"] > div > label {
+        display: flex !important;
+        align-items: center !important;
         background-color: #FFFFFF !important;
-        border: 1px solid #E8E4DC !important;
-        border-radius: 4px !important;
-        color: #333333 !important;
+        border: 1.5px solid #C8C4BC !important;
+        border-radius: 20px !important;
+        padding: 6px 16px !important;
+        cursor: pointer !important;
+        transition: all 0.15s ease !important;
+        margin: 0 !important;
+    }
+    /* Unselected text — dark and readable */
+    div[data-testid="stRadio"] > div > label p,
+    div[data-testid="stRadio"] > div > label span,
+    div[data-testid="stRadio"] > div > label div {
         font-family: 'Lato', sans-serif !important;
-        font-size: 0.95rem !important;
-        box-shadow: none !important;
+        font-size: 0.88rem !important;
+        font-weight: 500 !important;
+        color: #2A2A2A !important;
+        margin: 0 !important;
+        letter-spacing: 0.02em !important;
     }
-    div[data-testid="stSelectbox"] > div > div:hover {
-        border-color: #5A7D6A !important;
+    /* Hover state */
+    div[data-testid="stRadio"] > div > label:hover {
+        border-color: #1A1A1A !important;
+        background-color: #EFEBE4 !important;
     }
-    div[data-testid="stSelectbox"] svg { color: #999999 !important; }
+    /* Hide the radio dot */
+    div[data-testid="stRadio"] > div > label > div:first-child {
+        display: none !important;
+    }
+    /* Selected state — use :has(input:checked) which is widely supported */
+    div[data-testid="stRadio"] > div > label:has(input:checked) {
+        background-color: #1A1A1A !important;
+        border-color: #1A1A1A !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+    }
+    div[data-testid="stRadio"] > div > label:has(input:checked) p,
+    div[data-testid="stRadio"] > div > label:has(input:checked) span,
+    div[data-testid="stRadio"] > div > label:has(input:checked) div {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
 
-    /* ── Slider — accent green ── */
+    /* ── Button — centered ── */
+    div[data-testid="stButton"] {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+    }
+
+    /* ── Slider — black ── */
     [data-testid="stSlider"] div[role="slider"] {
-        background-color: #5A7D6A !important;
-        border-color: #5A7D6A !important;
+        background-color: #1A1A1A !important;
+        border-color: #1A1A1A !important;
     }
     [data-testid="stSlider"] > div > div > div > div {
-        background-color: #5A7D6A !important;
+        background-color: #1A1A1A !important;
     }
     .stSlider > div > div > div > div:nth-child(1) { background: #E8E4DC !important; }
-    .stSlider > div > div > div > div:nth-child(2) { background: #5A7D6A !important; }
+    .stSlider > div > div > div > div:nth-child(2) { background: #1A1A1A !important; }
     [data-baseweb="slider"] [data-baseweb="thumb"] {
-        background-color: #5A7D6A !important;
-        border-color: #5A7D6A !important;
+        background-color: #1A1A1A !important;
+        border-color: #1A1A1A !important;
     }
     [data-testid="stSlider"] [data-testid="stThumbValue"],
     [data-testid="stSlider"] div[data-baseweb="typo-label"],
     [data-testid="stSlider"] p,
     [data-testid="stSlider"] span {
-        color: #5A7D6A !important;
+        color: #1A1A1A !important;
         font-size: 0.9rem !important;
     }
 
@@ -166,7 +209,7 @@ st.markdown("""
         font-weight: 700 !important;
         letter-spacing: 0.28em !important;
         text-transform: uppercase !important;
-        background-color: #3D2B1F !important;
+        background-color: ##1A1A1B !important;
         color: #FFFFFF !important;
         border: none !important;
         border-radius: 4px !important;
@@ -176,7 +219,7 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(61, 43, 31, 0.2) !important;
     }
     div[data-testid="stButton"] > button:hover {
-        background-color: #2A1E15 !important;
+        background-color: ##1A1A1B !important;
         box-shadow: 0 6px 14px rgba(61, 43, 31, 0.25) !important;
         transform: translateY(-1px) !important;
     }
@@ -237,7 +280,7 @@ st.markdown("""
         font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: #5A7D6A;
+        color: #1A1A1A;
         margin-bottom: 1.2rem;
     }
     .book-hook {
@@ -270,15 +313,15 @@ st.markdown("""
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #4A6B59;
+        color: #1A1A1A;
         text-decoration: none;
         border-bottom: 1.5px solid transparent;
         padding-bottom: 2px;
         transition: border-color 0.2s ease, color 0.2s ease;
     }
     a.amazon-link:hover {
-        border-bottom-color: #4A6B59;
-        color: #3A5A49;
+        border-bottom-color: #1A1A1A;
+        color: #000000;
     }
 
     /* ── Alert / warning ── */
@@ -291,10 +334,10 @@ st.markdown("""
         font-size: 0.85rem !important;
     }
     div[data-testid="stAlert"] p { color: #333333 !important; }
-    div[data-testid="stAlert"] svg { color: #5A7D6A !important; }
+    div[data-testid="stAlert"] svg { color: #1A1A1A !important; }
 
     /* ── Spinner ── */
-    .stSpinner > div { border-top-color: #5A7D6A !important; }
+    .stSpinner > div { border-top-color: #1A1A1A !important; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -481,27 +524,20 @@ query = st.text_input(
     label_visibility="collapsed"
 )
 
-# ── Inline pill filters ───────────────────────────────────────────────────────
-col_era, col_rating, col_pages = st.columns([2, 1.2, 2])
+# ── Filters ───────────────────────────────────────────────────────────────────
+col_era, col_pages = st.columns([3, 2])
 
 with col_era:
     st.markdown('<div class="filter-label">Era</div>', unsafe_allow_html=True)
-    era_filter = st.selectbox(
+    era_filter = st.radio(
         "era",
-        ["Any", "Pre-1900", "20th Century", "Contemporary"],
-        label_visibility="collapsed"
-    )
-
-with col_rating:
-    st.markdown('<div class="filter-label">Min Rating</div>', unsafe_allow_html=True)
-    prestige_filter = st.selectbox(
-        "rating",
-        ["Any", "4.0+"],
+        ["Any era", "Pre-1900", "20th century", "Contemporary"],
+        horizontal=True,
         label_visibility="collapsed"
     )
 
 with col_pages:
-    st.markdown('<div class="filter-label">Max Pages</div>', unsafe_allow_html=True)
+    st.markdown('<div class="filter-label">Max pages</div>', unsafe_allow_html=True)
     pages_limit = st.slider(
         "pages",
         min_value=100,
@@ -511,17 +547,21 @@ with col_pages:
         label_visibility="collapsed"
     )
 
-# ── Lambda fixed internally ───────────────────────────────────────────────────
+st.markdown('<div class="filter-label" style="margin-top:0.75rem;">Rating</div>', unsafe_allow_html=True)
+prestige_radio = st.radio(
+    "rating",
+    ["Any rating", "Critically acclaimed (4.0+)"],
+    horizontal=True,
+    label_visibility="collapsed"
+)
+
+# ── Defaults ──────────────────────────────────────────────────────────────────
 lambda_val = 0.7
+era_filter      = era_filter      if era_filter      else "Any era"
+prestige_filter = "4.0+" if prestige_radio == "Critically acclaimed (4.0+)" else "Any"
 
-# Defaults
-if not era_filter:      era_filter      = "Any"
-if not prestige_filter: prestige_filter = "Any"
-
-# ── Button centered using a single middle column ──────────────────────────────
-_, btn_col, _ = st.columns([2, 1.2, 2])
-with btn_col:
-    search_clicked = st.button("Find My Next Book")
+# ── Button — centered via CSS ─────────────────────────────────────────────────
+search_clicked = st.button("Find my next book")
 
 # ── Search logic ──────────────────────────────────────────────────────────────
 if search_clicked and query and len(query.strip()) > 3:
@@ -542,7 +582,7 @@ if search_clicked and query and len(query.strip()) > 3:
     loading_placeholder.markdown("""
         <div style="text-align:center; padding:3rem 0;">
             <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem;
-                        font-weight:400; font-style:italic; color:#5A7D6A;
+                        font-weight:400; font-style:italic; color:#1A1A1A;
                         animation:pulse 1.8s ease-in-out infinite;">
                 Searching 901,182 books...
             </div>
@@ -579,7 +619,7 @@ if search_clicked and query and len(query.strip()) > 3:
         # Phase 3: DuckDB Metadata Filtering
         y_logic = "1=1"
         if era_filter == "Pre-1900":       y_logic = "PublishYear < 1900"
-        elif era_filter == "20th Century": y_logic = "PublishYear >= 1900 AND PublishYear <= 2000"
+        elif era_filter == "20th century": y_logic = "PublishYear >= 1900 AND PublishYear <= 2000"
         elif era_filter == "Contemporary": y_logic = "PublishYear > 2000"
         p_logic = "Rating >= 4.0" if prestige_filter == "4.0+" else "Rating >= 3.0"
 
@@ -634,13 +674,9 @@ if search_clicked and query and len(query.strip()) > 3:
             )
             final_df = deduped_df.iloc[mmr_indices].copy()
 
-            # Phase 7: Results Display — pure HTML, no Streamlit widgets inside cards
+            # Phase 7: Results Display
             loading_placeholder.empty()
             st.markdown('<hr class="editorial-divider">', unsafe_allow_html=True)
-            st.markdown(
-                '<div class="results-header">5 Recommendations · searched 901,182 books</div>',
-                unsafe_allow_html=True
-            )
 
             cards_html = ""
             total = len(final_df)
